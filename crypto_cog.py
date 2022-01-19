@@ -3,10 +3,9 @@ import configparser
 from binance.spot import Spot as Client
 import math
 import urllib.request, json
-from discord.ext.commands.errors import CheckFailure
 
 configs = configparser.ConfigParser()
-configs.read(r'C:\Users\TESTBENCH\Documents\Python\config.ini')
+configs.read(r'C:[your_filepath_here]\config.ini')
 key_binance = configs['BINANCE']
 base_url = key_binance["BINANCE_API"]
 spot_client = Client(base_url)
@@ -23,7 +22,6 @@ class priceCrypto(commands.Cog):
         self.client = client
 
     @commands.command()
-    @commands.has_any_role("Nobles", "Elders", "Admin")
     async def price(self, ctx, *, args):
         coin = args.split(' ')
         currency = coin[0]
@@ -182,13 +180,6 @@ class priceCrypto(commands.Cog):
             return
         else:
             msg = "Sorry, that crypto may not currently be supported. Please use '-price help' for a current list."
-            await ctx.send(msg)
-            return
-    
-    @price.error
-    async def price_error(self, ctx, error):
-        if isinstance(error, CheckFailure):
-            msg = "Sorry but that feature is only for subscribed members."
             await ctx.send(msg)
             return
 
