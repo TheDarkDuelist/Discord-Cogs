@@ -5,7 +5,7 @@ import random
 from crypto_cog import priceCrypto
 
 config = configparser.ConfigParser()
-config.read(r"C:\Users\TESTBENCH\Documents\Python Projects\Discord Tutorial Bot\config.ini")
+config.read(r"C:[your_filepath_here]\config.ini")
 key = config["DISCORD"]
 token = key["BOT_TOKEN"]
 
